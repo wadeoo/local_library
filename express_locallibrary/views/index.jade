@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  h1= title
+  p 欢迎来到  #[em 本地图书馆] 
+
+
+  if error
+    p 在获取动态内容时出现错误
+  else
+    p 此图书馆馆藏规模如下:
+
+    ul
+      li #[strong 藏书:] !{data.book_count}
+      li #[strong 藏书副本:] !{data.book_instance_count}
+      li #[strong 在架藏书副本:] !{data.book_instance_available_count}
+      li #[strong 作者:] !{data.author_count}
+      li #[strong 藏书种类:] !{data.genre_count}

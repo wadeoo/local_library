@@ -1,0 +1,35 @@
+extends layout 
+
+block content 
+    h1=title 
+
+    form(method='POST' action='')
+        div.form-group
+            label(for='book') 书:
+            select#book.form-control(name='book' type='select' placeholder='选择书名' required='true') ;
+                for book in book_list 
+                    if book_instance 
+                        option(value=book._id selected=(book_instance.book.toString()==book._id.toString()?'Selected':'false')) #{book.title}
+                    else 
+                        option(value=book._id)  #{book.title}
+        div.form-group
+            label(for='imprint') Imprint:
+            input#imprint.form-control(type='text' placeholder='出版商和日期' name='imprint' required='true' value=(undefined===book_instance?'':book_instance.imprint))
+        
+        .form-group
+            label(for='due_back') 什么时候书还架:
+            input#due_back.form-control(type='date' name='还架日期' value=(undefined===book_instance?'':book_instance.due_back))
+        .form-group 
+            label(for='status') 状态:
+            select#status.form-control(name='status' type='select' placeholder='选择状态' required='true') 
+                option(value='Maintenance') Maintenance
+                option(value='Available') Available
+                option(value='Loaned') Loaned
+                option(value='Reserved') Reserved
+            button.btn.btn-primary(type='submit') 提交
+
+    if errors 
+        ul
+            for error in errors 
+                li!=error.msg
+         
