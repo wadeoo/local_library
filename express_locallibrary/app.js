@@ -14,7 +14,7 @@ const mongoose=require('mongoose');
 const compression = require('compression');
 const { default: helmet } = require('helmet');
 const mongoDB
-='mongodb+srv://waydah:waydah@cluster0.dofxbpd.mongodb.net/local_library?retryWrites=true&w=majority';
+=process.env.MONGODB_URI || 'mongodb+srv://waydah:waydah@cluster0.dofxbpd.mongodb.net/local_library?retryWrites=true&w=majority';
 mongoose.connect(mongoDB,{useNewUrlParser: true, useUnifiedTopology: true});
 mongoose.Promise=global.Promise;
 const db=mongoose.connection;
